@@ -11,4 +11,12 @@ In this project, I will backup an etcd to a file called /tmp/myback and create a
 
 ## Backing Up the ETCD Cluster Data
 
+```
+export RELEASE="3.3.13"
+wget https://github.com/etcd-io/etcd/releases/download/v${RELEASE}/etcd-v${RELEASE}-linux-amd64.tar.gz
+tar xvf etcd-v${RELEASE}-linux-amd64.tar.gz
+cd etcd-v${RELEASE}-linux-amd64
+sudo mv etcdctl /usr/local/bin
+
+```
 
