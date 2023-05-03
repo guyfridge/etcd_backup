@@ -19,4 +19,9 @@ tar xvf etcd-v${RELEASE}-linux-amd64.tar.gz
 cd etcd-v${RELEASE}-linux-amd64
 sudo mv etcdctl /usr/local/bin
 ```
-
+Verify installation
+```
+guyfridge@instance-group-1-09jz:~$ etcdctl --version
+etcdctl version: 3.3.13
+API version: 2
+```
