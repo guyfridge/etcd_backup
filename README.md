@@ -1,5 +1,10 @@
 # etcd_backup
-Make a backup of the etcd database in a file called /tmp/myback
 
 # Problem Statement
-As an infrastructure admin, you need to take the backup of an etcd in a file called /tmp/myback. Make sure to have a namespace called cep-project2 with a network policy configured in such a way that all the Pods in the same namespace should access each other. Any other Pods from the non cep-project2 should not access the Pods. Configure a Kubernetes client on worker node 3 in such a way that user4 should have only view access to cep-project2. Update the master with the latest version of the Kubernetes.
+In this project, I will backup an etcd to a file called /tmp/myback and create a namespace called cep-project2 with a network policy that allows all the Pods in the same namespace to access one another.
+
+# Steps to Take
+1. Backing up the etcd cluster data
+2. Creating and verifying the namespaces
+3. Generating a certificate and private key in the worker node
+4. Upgrading the Kubernetes cluster with the latest version
