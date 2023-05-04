@@ -30,8 +30,6 @@ API version: 2
 ```
 guyfridge@instance-group-1-09jz:~$ hostname -i
 10.138.0.4
-guyfridge@instance-group-1-09jz:~$ ETCDCTL_API=3 etcdctl --endpoints=10.138.0.4:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key snapshot save /tmp/myback
-Error: open /etc/kubernetes/pki/etcd/server.key: permission denied
 guyfridge@instance-group-1-09jz:~$ sudo ETCDCTL_API=3 etcdctl --endpoints=10.138.0.4:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key snapshot save /tmp/myback
 Snapshot saved at /tmp/myback
 ```
