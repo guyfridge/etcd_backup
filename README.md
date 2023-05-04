@@ -73,6 +73,16 @@ spec:
 ## Generate a Certificate and Private Key for Authentication as user4
 - From the master node
 ```
+sudo vi /etc/ssl/openssl.cnf
+```
+- Press 'i'
+- Comment out the following line
+```
+RANDFILE = $ENV::HOME/.rnd
+```
+- Press 'esc' + ':wq' to save and quit
+- Continue with the following on the master node
+```
 sudo mkdir -p /home/certs
 cd /home/certs
 sudo openssl genrsa -out user4.key 2048
