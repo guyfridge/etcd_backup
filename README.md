@@ -95,7 +95,7 @@ kubectl apply -f project2-ns.yaml
 ```
 ### Provide read-only access to user4 on the cep-project2 namespace
 ```
-kubectl --kubeconfig=/etc/kubernetes/admin.conf create role readonly --namespace=cep-project2 --verb=get,list,watch --resource="*.*"
-kubectl --kubeconfig=/etc/kubernetes/admin.conf create rolebinding user4-access --namespace=cep-project2 --user=user4 --role=readonly
+sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf create role readonly --namespace=cep-project2 --verb=get,list,watch --resource="*.*"
+sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf create rolebinding user4-access --namespace=cep-project2 --user=user4 --role=readonly
 ```
 
