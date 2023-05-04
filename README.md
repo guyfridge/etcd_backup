@@ -71,7 +71,7 @@ spec:
 ```
 - Press 'esc' + ':wq' to save and quit the YAML file
 ## Generate a Certificate and Private Key for Authentication as user4
-From the master node
+- From the master node
 ```
 mkdir -p /home/certs
 cd /home/certs
@@ -79,4 +79,8 @@ openssl genrsa -out user4.key 2048
 openssl req -new -key user4.key -out user4.csr -subj "/CN=user4/O=devops"
 openssl x509 -req -in user4.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out user4.crt -days 1000 ; ls -ltr
 ```
-
+### Provide read-only access to user4 on the cep-project2 namespace
+```
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create role readonly --namespace=cep-project2 --verb=get,list,watch --resource="*.*"
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create rolebinding user4-access --namespace=cep-project2 --user=user4 --role=readonly
+```
