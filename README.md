@@ -50,7 +50,7 @@ metadata:
   labels:
     slearn: cep-project2
 ```
-### Create a network policy that only allows for communication between pods in the designated namespace
+## Create a network policy that only allows for communication between pods in the designated namespace
 - Add the following to project2-ns.yaml
 ```
 ---
@@ -70,3 +70,4 @@ spec:
            slearn: cep-project2
 ```
 - Press 'esc' + ':wq' to save and quit the YAML file
+## Generate a Certificate and Private Key in the Worker Node
