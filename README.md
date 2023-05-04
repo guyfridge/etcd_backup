@@ -36,3 +36,16 @@ Snapshot saved at /tmp/myback
 ```
 ## Creating and Verifying the Namespaces
 ### Create a namespace called cep-project2
+```
+vi project2-ns.yaml
+```
+- Press 'i'
+- Enter the following
+```
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: cep-project2
+  labels:
+    slearn: cep-project2
+```
