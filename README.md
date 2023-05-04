@@ -91,7 +91,7 @@ sudo openssl x509 -req -in user4.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/
 ```
 ### Execute project2-ns.yaml to create the namespace 'cep-project2' and initialize the network policy
 ```
-kubectl apply -f cep-project2.yaml
+kubectl apply -f project2-ns.yaml
 ```
 ### Provide read-only access to user4 on the cep-project2 namespace
 ```
