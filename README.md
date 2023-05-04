@@ -34,3 +34,5 @@ Error: open /etc/kubernetes/pki/etcd/server.key: permission denied
 guyfridge@instance-group-1-09jz:~$ sudo ETCDCTL_API=3 etcdctl --endpoints=10.138.0.4:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key snapshot save /tmp/myback
 Snapshot saved at /tmp/myback
 ```
+## Creating and Verifying the Namespaces
+### Create a namespace called cep-project2
