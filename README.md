@@ -6,8 +6,9 @@ In this project, I will backup an etcd to a file called /tmp/myback and create a
 ## Steps to Take
 1. Backing up the etcd cluster data
 2. Creating and verifying the namespaces
-3. Generating a certificate and private key in the worker node
-4. Upgrading the Kubernetes cluster with the latest version
+3. Create a network policy that only allows pods within the desired namespace to communicate with one another
+4. Generating a certificate and private key in the worker node
+5. Upgrading the Kubernetes cluster with the latest version
 
 ## Backing Up the ETCD Cluster Data
 
@@ -49,3 +50,23 @@ metadata:
   labels:
     slearn: cep-project2
 ```
+### Create a network policy that only allows for communication between pods in the designated namespace
+- Add the following to project2-ns.yaml
+```
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: allow-traffic-in-ns
+ namespace: cep-project2
+spec:
+ podSelector: {}
+ policyTypes:
+  - Ingress
+ ingress:
+  - from:
+     - namespaceSelector:
+         matchLabels:
+           slearn: cep-project2
+```
+- Press ':wq' to save and quit the YAML file
