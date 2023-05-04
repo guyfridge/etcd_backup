@@ -70,4 +70,13 @@ spec:
            slearn: cep-project2
 ```
 - Press 'esc' + ':wq' to save and quit the YAML file
-## Generate a Certificate and Private Key in the Worker Node
+## Generate a Certificate and Private Key for Authentication as user4
+From the master node
+```
+mkdir -p /home/certs
+cd /home/certs
+openssl genrsa -out user4.key 2048
+openssl req -new -key user4.key -out user4.csr -subj "/CN=user4/O=devops"
+openssl x509 -req -in user4.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out user4.crt -days 1000 ; ls -ltr
+```
+
