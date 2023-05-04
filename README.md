@@ -79,7 +79,7 @@ sudo vi /etc/ssl/openssl.cnf
 RANDFILE = $ENV::HOME/.rnd
 ```
 - Press 'esc' + ':wq' to save and quit
-- Continue with the following on the master node
+- Continue with the following on the master node to create the private key and certificate
 ```
 sudo mkdir -p /home/certs
 cd /home/certs
@@ -96,4 +96,30 @@ kubectl apply -f project2-ns.yaml
 sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf create role readonly --namespace=cep-project2 --verb=get,list,watch --resource="*.*"
 sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf create rolebinding user4-access --namespace=cep-project2 --user=user4 --role=readonly
 ```
-
+### Create the user4.conf file to assign the private key and certificate to user4
+```
+vi user4.conf
+```
+- Press 'i'
+- Enter the following
+```
+apiVersion: v1
+clusters:
+  - cluster: null
+    certificate-authority: /etc/kubernetes/pki/ca.crt
+    server: https://<put-your-master-ip>:6443
+    name: kubernetes
+contexts:
+  - context:
+      cluster: kubernetes
+      user: user4
+    name: user4@kubernetes
+current-context: user4@kubernetes
+kind: Config
+preferences: {}
+users:
+  - name: user4
+    user:
+      client-certificate: /home/certs/user4.crt
+      client-key: /home/certs/user4.key
+```
