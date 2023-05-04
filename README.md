@@ -69,4 +69,4 @@ spec:
          matchLabels:
            slearn: cep-project2
 ```
-- Press ':wq' to save and quit the YAML file
+- Press 'esc' + ':wq' to save and quit the YAML file
