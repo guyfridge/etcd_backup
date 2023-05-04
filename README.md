@@ -6,7 +6,7 @@ In this project, I will backup an etcd to a file called /tmp/myback and create a
 ## Steps to Take
 1. Backing up the etcd cluster data
 2. Creating and verifying the namespaces
-3. Create a network policy that only allows pods within the desired namespace to communicate with one another
+3. Create a network policy that only allows for communication between pods in the designated namespace
 4. Generating a certificate and private key in the worker node
 5. Upgrading the Kubernetes cluster with the latest version
 
