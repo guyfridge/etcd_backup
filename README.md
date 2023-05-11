@@ -147,4 +147,21 @@ scp /home/certs/user4.conf guyfridge@10.138.0.2:/home/certs
 scp /home/certs/user4.crt guyfridge@10.138.0.2:/home/certs
 scp /home/certs/user4.key guyfridge@10.138.0.2:/home/certs
 ```
-
+## Upgrade the Kubernetes Cluster to the Lastest Version
+### Check kubelet kubectl and kubeadm Versions
+```
+kubectl version --short --client 
+kubeadm version -o short 
+kubelet --version
+```
+### Upgrade Master Node
+```
+#remove holds
+sudo apt-mark unhold kubeadm kubelet kubectl
+#downgrade kubeadm on master node
+sudo apt install -y kubeadm=1.23.11-00
+#check for latest version of kubeadm
+sudo apt update
+apt-cache madison kubeadm
+#update to latest version
+sudo apt install -y kubeadm=1.27.1-00
