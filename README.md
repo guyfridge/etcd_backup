@@ -155,13 +155,38 @@ kubeadm version -o short
 kubelet --version
 ```
 ### Upgrade Master Node
+- Remove Holds
 ```
-#remove holds
 sudo apt-mark unhold kubeadm kubelet kubectl
-#downgrade kubeadm on master node
+```
+- Downgrade Kubeadm on Master Node
+```
 sudo apt install -y kubeadm=1.23.11-00
-#check for latest version of kubeadm
+```
+- Check For Latest Version of Kubeadm
+```
 sudo apt update
 apt-cache madison kubeadm
-#update to latest version
+```
+- Update to Latest Version and Verify Installation
+```
 sudo apt install -y kubeadm=1.27.1-00
+kubeadm version -o short
+```
+- Plan + Upgrade the Controller Components
+```
+sudo kubeadm upgrade plan
+sudo kubeadm upgrade apply 1.27.1
+```
+- Upgrade kubectl and kubelet
+```
+sudo apt install -y kubectl=1.27.1-00 kubelet=1.27.1-00
+```
+- Reapply Holds on the Packages
+```
+sudo apt-mark hold kubeadm kubelet kubectl
+```
+
+
+
+
