@@ -68,7 +68,7 @@ spec:
            slearn: cep-project2
 ```
 - Press 'esc' + ':wq' to save and quit the YAML file
-## Generate a Certificate and Private Key for Authentication as user4
+## Generate a Certificate and Private Key for Authentication as user4 in the Worker Nodes
 - From the master node
 ```
 sudo vi /etc/ssl/openssl.cnf
@@ -122,4 +122,23 @@ users:
     user:
       client-certificate: /home/certs/user4.crt
       client-key: /home/certs/user4.key
+```
+### Generate Private / Public Key Pair
+```
+ssh-keygen
+```
+- Set permissions on public key
+```
+chmod 400 .ssh/id_rsa.pub
+```
+- Manually copy public key at .ssh/id_rsa.pub to .ssh/authorized_keys in the worker nodes
+- Verify ssh connectivity by sshing into the worker node from the master controller
+```
+ssh guyfridge@worker-ip
+```
+### scp user4.cert user4.key & user4.conf to Worker Node
+```
+scp /home/certs/user4.conf guyfridge@10.138.0.2:/home/certs
+scp /home/certs/user4.cert guyfridge@10.138.0.2:/home/certs
+scp /home/certs/user4.key guyfridge@10.138.0.2:/home/certs
 ```
