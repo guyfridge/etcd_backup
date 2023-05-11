@@ -134,7 +134,7 @@ chmod 400 .ssh/id_rsa.pub
 - Manually copy public key at .ssh/id_rsa.pub to .ssh/authorized_keys in the worker nodes
 - Verify ssh connectivity by sshing into the worker node from the master controller
 ```
-ssh guyfridge@worker-ip
+ssh guyfridge@10.138.0.2
 ```
 ### scp user4.cert user4.key & user4.conf to Worker Node
 - Change permissions on user4.key
@@ -159,10 +159,6 @@ kubelet --version
 ```
 sudo apt-mark unhold kubeadm kubelet kubectl
 ```
-- Downgrade Kubeadm on Master Node
-```
-sudo apt install -y kubeadm=1.23.11-00
-```
 - Check For Latest Version of Kubeadm
 ```
 sudo apt update
@@ -186,6 +182,29 @@ sudo apt install -y kubectl=1.27.1-00 kubelet=1.27.1-00
 ```
 sudo apt-mark hold kubeadm kubelet kubectl
 ```
+- Drain Worker Nodes
+```
+sudo kubectl drain instance-group-1-hxbw --ignore-daemonsets
+```
+- Inside the Worker Node Remove Hold From kubeadm kubectl and kubelet
+```
+sudo apt-mark unhold kubeadm kubelet kubectl
+```
+- Upgrade kubeadm kubectl and kubelet and Reapply Hold to the Packages
+```
+sudo apt install -y kubeadm=1.27.1-00 kubelet=1.27.1-00 kubectl=1.27.1-00
+kubeadm version -o short 
+kubelet --version 
+kubectl version --short
+sudo apt-mark hold kubeadm kubelet kubectl
+```
+- Inside the Master Node Uncordon Worker Nodes
+```
+sudo kubectl uncordon instance-group-1-hxbw
+```
+
+
+
 
 
 
