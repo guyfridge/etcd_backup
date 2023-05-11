@@ -137,8 +137,14 @@ chmod 400 .ssh/id_rsa.pub
 ssh guyfridge@worker-ip
 ```
 ### scp user4.cert user4.key & user4.conf to Worker Node
+- Change permissions on user4.key
+```
+sudo chmod 777 user4.key
+```
+- scp files onto the worker node 
 ```
 scp /home/certs/user4.conf guyfridge@10.138.0.2:/home/certs
-scp /home/certs/user4.cert guyfridge@10.138.0.2:/home/certs
+scp /home/certs/user4.crt guyfridge@10.138.0.2:/home/certs
 scp /home/certs/user4.key guyfridge@10.138.0.2:/home/certs
 ```
+
